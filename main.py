@@ -3,9 +3,9 @@ from aiogram import Bot, Dispatcher
 from aiogram.enums import ParseMode
 from handlers import start, add_data, get_data, out_of_flow
 
-TOKEN = os.getenv('add_get_data_bot_token')
+TOKEN = lambda: os.getenv('add_get_data_bot_token')
 
-bot = Bot(TOKEN, parse_mode=ParseMode.HTML)
+bot = Bot(TOKEN(), parse_mode=ParseMode.HTML)
 dp = Dispatcher()
 
 async def main() -> None:
