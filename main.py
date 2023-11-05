@@ -1,10 +1,9 @@
-import asyncio, logging, sys
-from config_reader import config
+import asyncio, logging, sys, os
 from aiogram import Bot, Dispatcher
 from aiogram.enums import ParseMode
 from handlers import start, add_data, get_data, out_of_flow
 
-TOKEN = config.bot_token.get_secret_value()
+TOKEN = os.getenv('add_get_data_bot_token')
 
 bot = Bot(TOKEN, parse_mode=ParseMode.HTML)
 dp = Dispatcher()
