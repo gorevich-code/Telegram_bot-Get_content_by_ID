@@ -17,7 +17,7 @@ class BasicMessageDataModel:
         record_id = db.insert_data(data_to_insert)
         return record_id
     
-    def convert_str_to_dict(input_string: str)-> dict:
+    def convert_str_to_dict(self, input_string: str)-> dict:
         """Converts message chat model dump from string to dictionary"""
         output_dict = {}
         for elem in input_string[1:-1].split(','):

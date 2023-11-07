@@ -11,8 +11,10 @@ import main
 
 router = Router()
 
+
 class DataToGive(StatesGroup):
     get_data_from_db = State()
+
 
 @router.message(Command('get'))
 async def command_add_handler(message: Message, state: FSMContext) -> None:
@@ -23,7 +25,6 @@ async def command_add_handler(message: Message, state: FSMContext) -> None:
                          f"\n\nCall /get_cancel to abort {hbold('get')} flow")
     await state.set_state(DataToGive.get_data_from_db)
 
-
 @router.message(Command('get_cancel'), DataToGive.get_data_from_db)
 async def command_get_cancel_handler(message: Message, state: FSMContext) -> None:
     """
@@ -31,8 +32,6 @@ async def command_get_cancel_handler(message: Message, state: FSMContext) -> Non
     """
     await state.clear()
     await message.answer(f"Get data flow canceled")
-
-
 
 @router.message(DataToGive.get_data_from_db)
 async def recieve_data(message: Message, state: FSMContext):

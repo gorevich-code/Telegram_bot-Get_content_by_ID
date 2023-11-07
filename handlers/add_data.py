@@ -6,10 +6,14 @@ from aiogram.fsm.state import StatesGroup, State
 from aiogram.fsm.context import FSMContext
 from data_models.user_message_data_model import BasicMessageDataModel
 from storage.sqlite3DB import db as SQLite3_DB
+
+
 router = Router()
+
 
 class DataToSave(StatesGroup):
     new_data_input = State()
+
 
 @router.message(Command('add'))
 async def command_add_handler(message: Message, state: FSMContext) -> None:
@@ -29,7 +33,6 @@ async def command_add_cancel_handler(message: Message, state: FSMContext) -> Non
     """
     await state.clear()
     await message.answer(f"Add data flow canceled")
-    
 
 @router.message(DataToSave.new_data_input)
 async def recieve_data(message: Message, state: FSMContext):
